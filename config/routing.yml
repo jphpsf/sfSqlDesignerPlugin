@@ -1,0 +1,8 @@
+Backend:
+  url: /wwwSqlDesigner/backend/*
+  param: { module: sfSqlDesignerPlugin, action: backend }
+
+Designer:
+  url: /wwwSqlDesigner/*
+  param: { module: sfSqlDesignerPlugin, action:designer }
+
