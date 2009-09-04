@@ -40,33 +40,10 @@ class sfSqlDesignerPluginActions extends sfActions
       {
         try
         {
-          // get file as sent
-          $data = file_get_contents("php://input");
-
-          // create yml file
-          $ymlSchemaPath = sfConfig::get('sf_config_dir').'/doctrine/schema.yml';
-
-          $this->logMessage('schema.yml: '.$ymlSchemaPath);
-
-          $ymlSchema = fopen($ymlSchemaPath, "w");
-          if (!$ymlSchema) throw new Exception("Can not create schema.yml file");
-
-          // create DOM object and load the input data
-          $xml=new DOMDocument();
-          if (!$xml->loadXml($data)) throw new Exception("Can not load xml");
-
-          $xslt = new XSLTProcessor();
-
-          # import stylesheet
-          $xsl = new DOMDocument();
-          if (!$xsl->load(dirname(__FILE__).'/../../../web/db/symfony-doctrine/output.xsl')) throw new Exception("Can not load stylesheet");
-          if (!$xslt->importStylesheet($xsl)) throw new Exception("Can not import stylesheet");
-
-          # write to file
-          $transform=$xslt->transformToXML($xml);
-          if (!$transform) throw new Exception("XSLT transformation failed");
-          if (!fwrite($ymlSchema,$transform)) throw new Exception("Can not write schema.yml file");
-          if (!fclose($ymlSchema)) throw new Exception("Can not close schema.yml file");
+          // attempt to save to schema.yml
+          sfSqlDesignerLib::saveToSchema(
+            file_get_contents("php://input"),
+            sfConfig::get('sf_config_dir').'/doctrine/schema.yml');
 
           // all good! :)
           $response->setStatusCode(201);
@@ -74,11 +51,6 @@ class sfSqlDesignerPluginActions extends sfActions
         }
         catch (Exception $e)
         {
-          if ($ymlFile)
-          {
-            fclose($ymlFile);
-            unlink($keyword.".yml");
-          }
           $response->setStatusCode(500);
           $this->logMessage('Error when saving: '.$e->getMessage());
           return $this->renderText("HTTP/1.0 500 Internal Server Error: ".$e->getMessage());

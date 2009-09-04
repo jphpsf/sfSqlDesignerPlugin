@@ -16,6 +16,7 @@
 	<script type="text/javascript" src="<?php echo $js_dir; ?>oz.js"></script>
 	<script type="text/javascript" src="<?php echo $js_dir; ?>config.js"></script>
 	<script type="text/javascript" src="<?php echo $js_dir; ?>wwwsqldesigner.js"></script>
+	<script type="text/javascript" src="<?php echo $js_dir; ?>sfsqldesigner.js"></script>
 </head>
 
 <body>
@@ -24,6 +25,10 @@
 		<div class="shadow-left"></div>
 		<div class="shadow-corner"></div>
 		<div class="shadow-bottom"></div>
+
+		<div>WWW SQL Designer</div>
+
+		<hr/>
 
 		<input type="button" id="saveload" />
 
@@ -223,10 +228,51 @@
 						<textarea rows="5" cols="40" id="tablecomment"></textarea>
 					</td>
 				</tr>
+				<tr>
+					<td>
+						Behaviors
+					</td>
+					<td>
+						<ul style="list-style-type:none">
+							<li>
+								<input type="checkbox" id="tableacttimestampable" value="1" />
+								<label id="tableacttimestampablelabel" for="tableacttimestampable">actAsTimestampable</label>
+							</li>
+							<li>
+								<input type="checkbox" id="tableactsoftdelete" value="1" />
+								<label id="tableactsoftdeletelabel" for="tableactsoftdelete">actAsSoftDelete</label>
+							</li>
+							<li>
+								<input type="checkbox" id="tableactversionable" value="1" />
+								<label id="tableactversionablelabel" for="tableactversionable">actAsVersionable</label>
+							</li>
+							<li>
+								<input type="checkbox" id="tableacttaggable" value="1" />
+								<label id="tableacttaggablelabel" for="tableacttaggable">actAsTaggable</label>
+							</li>
+							<li>
+								<input type="checkbox" id="tableacttaggable" value="1" disabled="disabled" />
+								<label id="tableacti18nlabel" for="tableacti18n">actAsI18n (not supported)</label>
+							</li>
+						</ul>
+					</td>
+				</tr>
 			</tbody>
 		</table>
 	</div>
 
+<!--
+
+  options:
+    type: MyISAM
+    collate: utf8_unicode_ci
+    charset: utf8
+
+className
+abstract (true|false)
+tableName
+
+//-->
 	<script type="text/javascript">
 		var d = new SQL.Designer();
 	</script>
