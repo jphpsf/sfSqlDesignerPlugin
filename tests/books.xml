@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sql>
+<datatypes db="symfony-doctrine">
+	<group label="Numeric" color="rgb(238,238,170)">
+		<type label="Integer" length="1" sql="integer" quote=""/>
+		<type label="Decimal" length="1" sql="decimal" quote=""/>
+		<type label="Float" length="1" sql="float" quote=""/>
+	</group>
+
+	<group label="Character" color="rgb(255,200,200)">
+		<type label="String" length="1" sql="string" quote="'"/>
+		<type label="Array" length="1" sql="array" quote="'"/>
+		<type label="Object" length="1" sql="object" quote="'"/>
+		<type label="Blob" length="1" sql="blob" quote="'"/>
+		<type label="Clob" length="1" sql="clob" quote="'"/>
+	</group>
+
+	<group label="Date &amp; Time" color="rgb(200,255,200)">
+		<type label="Date" length="0" sql="date" quote="'"/>
+		<type label="Time" length="0" sql="time" quote="'"/>
+		<type label="Timestamp" length="0" sql="timestamp" quote="'"/>
+	</group>
+
+	<group label="Miscellaneous" color="rgb(200,200,255)">
+		<type label="Enum" length="0" sql="enum" quote="" note="Use default field to set the enum values. First value will be the default one."/>
+		<type label="Boolean" length="0" sql="boolean" quote=""/>
+		<type label="Gzip" length="1" sql="gzip" quote="'"/>
+	</group>
+
+	<group label="Table properties" color="rgb(221,221,221)">
+		<type label="Class name" length="0" sql="tableClassName" quote="" note="The generated class name"/>
+		<type label="Table name" length="0" sql="tableName" quote="" note="The sql table name"/>
+		<type label="Behaviors" length="0" sql="tableActAs" quote="" note="The behaviors on the table"/>
+		<type label="Options" length="0" sql="tableOptions" quote="" note="The options for the table"/>
+	</group>
+
+</datatypes><table x="327" y="83" name="books">
+<row name="id" null="0" autoincrement="1">
+<datatype>integer</datatype>
+</row>
+<row name="title" null="0" autoincrement="0">
+<datatype>string(128)</datatype>
+</row>
+<row name="excerpt" null="0" autoincrement="0">
+<datatype>string(255)</datatype>
+<comment>This is a short description of what the book is about</comment>
+</row>
+<row name="published" null="0" autoincrement="0">
+<datatype>date</datatype>
+</row>
+<row name="Authors_id" null="0" autoincrement="0">
+<datatype>integer</datatype>
+<relation table="authors" row="id" />
+</row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+<comment>This is a table to store books</comment>
+</table>
+<table x="574" y="91" name="authors">
+<row name="id" null="0" autoincrement="1">
+<datatype>integer</datatype>
+</row>
+<row name="name" null="0" autoincrement="0">
+<datatype>string(128)</datatype>
+</row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+<comment>This table stores the books authors</comment>
+</table>
+</sql>
