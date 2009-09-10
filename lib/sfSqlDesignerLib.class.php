@@ -52,7 +52,35 @@ class sfSqlDesignerLib
    */
   static public function loadFromSchema($schemaPath)
   {
+    $xml=<<<XML
+<?xml version="1.0" encoding="utf-8" ?>
+<sql>
+XML;
 
+    $datatypes=file_get_contents(dirname(__FILE__).'/../web/db/symfony-doctrine/datatypes.xml');;
+    $xml.=str_replace('<?xml version="1.0"?>','',$datatypes);
+
+    $yaml=sfYaml::load($schemaPath);
+
+    foreach ($yaml as $table=>$description)
+    {
+    $xml.=<<<XML
+  <table name="$table">
+
+  </table>
+XML;
+    }
+
+
+    $xml.=<<<XML
+
+</sql>
+XML;
+
+    // normalize line ending
+    $xml=preg_replace('!\r\n?!',"\n",$xml);
+
+    return $xml;
 
   }
 

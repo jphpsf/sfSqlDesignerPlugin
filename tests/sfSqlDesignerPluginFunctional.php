@@ -11,7 +11,7 @@
 // pass the app name
 if (count($argv)!==2)
 {
-  echo "Usage: php sfSqlDesignerTest.php frontend";
+  echo "Usage: php sfSqlDesignerTest.php frontend\n";
   exit(1);
 }
 $app=$argv[1];
@@ -21,14 +21,20 @@ include(dirname(__FILE__).'/../../../test/bootstrap/functional.php');
 $browser = new sfTestBrowser();
 $browser->initialize();
 
-// backup schema.yml
-$schema=sfConfig::get('sf_config_dir').'/doctrine/schema.yml';
-if (file_exists($schema))
+// backup schema.yml and sfSqlDesignerPlugin.yml
+$ymlPath=sfConfig::get('sf_config_dir').'/doctrine/schema.yml';
+$xmlPath=sfConfig::get('sf_config_dir').'/doctrine/sfSqlDesignerPlugin.yml';
+
+if (file_exists($ymlPath))
 {
-  copy($schema,"$schema.backup");
+  copy($ymlPath,"$ymlPath.backup");
+}
+if (file_exists($xmlPath))
+{
+  copy($xmlPath,"$xmlPath.backup");
 }
 
-// test!
+// test the controllers
 $browser->
   get('/wwwSqlDesigner')->
   isStatusCode(200)->
@@ -37,9 +43,14 @@ $browser->
   checkResponseElement('body', '/WWW SQL Designer/')
 ;
 
-// restore schema.yml
-if (file_exists("$schema.backup"))
+// restore schema.yml and sfSqlDesignerPlugin.yml
+if (file_exists("$ymlPath.backup"))
 {
-  copy("$schema.backup",$schema);
-  unlink("$schema.backup");
+  copy("$ymlPath.backup",$ymlPath);
+  unlink("$ymlPath.backup");
+}
+if (file_exists("$xmlPath.backup"))
+{
+  copy("$xmlPath.backup",$xmlPath);
+  unlink("$xmlPath.backup");
 }
