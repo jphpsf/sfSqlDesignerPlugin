@@ -20,6 +20,7 @@ Tired of hand writing your schema.yml to describe your database schema in Symfon
     * Not supported yet: indexes
     * Not supported yet: one to many and many to many relationships, delete cascade
   * TODO: Add link to sql designer in debug bar?
+  * TODO: Add a button to call the doctrine build task to make sure the generated model is valid?
 
 ## Source
 The plugin is available on github at http://github.com/jphpsf/sfSqlDesigner/tree/master , it is not available on Symfony plugins website (yet).
