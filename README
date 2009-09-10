@@ -39,7 +39,6 @@ The plugin is available on github at http://github.com/jphpsf/sfSqlDesigner/tree
 
     * Double check the plugin is enabled in config/ProjectConfiguration.class.php (should be as default in 1.2)
     * Open your app (or one of your app if you have several) config/settings.yml and add into the dev: "section" like this:
-
         dev:
           .settings:
             error_reporting:        <?php echo (E_ALL | E_STRICT)."\n" ?>
