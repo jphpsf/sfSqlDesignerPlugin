@@ -10,11 +10,21 @@
 
 class sfSqlDesignerPluginActions extends sfActions
 {
+  private $_ymlPath=NULL;
+  private $_xmlPath=NULL;
+
+  public function preExecute()
+  {
+    $this->_ymlPath=sfConfig::get('sf_config_dir').'/doctrine/schema.yml';
+    $this->_xmlPath=sfConfig::get('sf_config_dir').'/doctrine/sfSqlDesignerPlugin.xml';
+  }
+
   /**
    * main action to load the designer UI
    */
   public function executeDesigner()
   {
+    $this->loadOnStartup=(file_exists($this->_ymlPath) || file_exists($this->_xmlPath));
   }
 
   /**
@@ -30,10 +40,6 @@ class sfSqlDesignerPluginActions extends sfActions
     // set response format
     $response=$this->getResponse();
 
-    // doctrine config directory
-    $ymlPath=sfConfig::get('sf_config_dir').'/doctrine/schema.yml';
-    $xmlPath=sfConfig::get('sf_config_dir').'/doctrine/sfSqlDesignerPlugin.xml';
-
     switch ($action)
     {
       case "save":
@@ -43,10 +49,10 @@ class sfSqlDesignerPluginActions extends sfActions
           $xml=file_get_contents("php://input");
 
           // attempt to save to schema.yml
-          sfSqlDesignerLib::saveToSchema($xml,$ymlPath);
+          sfSqlDesignerLib::saveToSchema($xml,$this->_ymlPath);
 
           // attempt to save to sfSqlDesignerPlugin.xml
-          if (!file_put_contents($xmlPath,$xml)) throw new Exception('Could not save to sfSqlDesignerPlugin.xml');
+          if (!file_put_contents($this->_xmlPath,$xml)) throw new Exception('Could not save to sfSqlDesignerPlugin.xml');
 
           // all good! :)
           $response->setStatusCode(201);
@@ -67,11 +73,11 @@ class sfSqlDesignerPluginActions extends sfActions
         {
           // first try to load the sfSqlDesignerPlugin.xml file we previously saved, there
           // is no need to do the conversion work again
-          if (file_exists($xmlPath))
+          if (file_exists($this->_xmlPath))
           {
-            $xml=file_get_contents($xmlPath);
+            $xml=file_get_contents($this->_xmlPath);
           }
-          else if (file_exists($ymlPath)) // next we try the schema.yml
+          else if (file_exists($this->_ymlPath)) // next we try the schema.yml
           {
             //here the code to convert schema.yml to xml
             //$xml=....

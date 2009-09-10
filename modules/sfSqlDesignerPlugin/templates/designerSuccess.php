@@ -315,9 +315,11 @@
 	<script type="text/javascript">
 		(function(){
 			var d = new SQL.Designer();
+			<?php if ($loadOnStartup): ?>
 			OZ.Event.add(window,"load",function(){
 				d.io.serverload();
 			});
+			<?php endif; ?>
 		})();
 	</script>
 </body>
