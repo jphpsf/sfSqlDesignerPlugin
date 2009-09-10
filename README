@@ -19,6 +19,7 @@ Tired of hand writing your schema.yml to describe your database schema in Symfon
     * Not supported yet: inheritance
     * Not supported yet: indexes
     * Not supported yet: one to many and many to many relationships, delete cascade
+  * TODO: Support translations of wwwsqldesigner for added UI elements
   * TODO: Add global schema information
   * TODO: Add link to sql designer in debug bar?
   * TODO: Add a button to call the doctrine build task to make sure the generated model is valid?
