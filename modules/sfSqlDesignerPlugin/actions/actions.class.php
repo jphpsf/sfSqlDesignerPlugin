@@ -32,7 +32,10 @@ class sfSqlDesignerPluginActions extends sfActions
 
     // set response format
     $response=$this->getResponse();
-    $response->setContentType('text/xml');
+
+    // doctrine config directory
+    $ymlPath=sfConfig::get('sf_config_dir').'/doctrine/schema.yml';
+    $xmlPath=sfConfig::get('sf_config_dir').'/doctrine/sfSqlDesignerPlugin.xml';
 
     switch ($action)
     {
@@ -40,10 +43,13 @@ class sfSqlDesignerPluginActions extends sfActions
       {
         try
         {
+          $xml=file_get_contents("php://input");
+
           // attempt to save to schema.yml
-          sfSqlDesignerLib::saveToSchema(
-            file_get_contents("php://input"),
-            sfConfig::get('sf_config_dir').'/doctrine/schema.yml');
+          sfSqlDesignerLib::saveToSchema($xml,$ymlPath);
+
+          // attempt to save to sfSqlDesignerPlugin.xml
+          if (!file_put_contents($xmlPath,$xml)) throw new Exception('Could not save to sfSqlDesignerPlugin.xml');
 
           // all good! :)
           $response->setStatusCode(201);
@@ -60,9 +66,35 @@ class sfSqlDesignerPluginActions extends sfActions
 
       case "load":
       {
-        // here the code to convert schema.yml to xml
-        $response->setStatusCode(501);
-        return $this->renderText("HTTP/1.0 501 Not Implemented");
+        try
+        {
+          // first try to load the sfSqlDesignerPlugin.xml file we previously saved, there
+          // is no need to do the conversion work again
+          if (file_exists($xmlPath))
+          {
+            $xml=file_get_contents($xmlPath);
+          }
+          else if (file_exists($ymlPath)) // next we try the schema.yml
+          {
+            //here the code to convert schema.yml to xml
+            //$xml=....
+            $response->setStatusCode(501);
+            return $this->renderText("HTTP/1.0 501 Not Implemented");
+          }
+          else
+          {
+            throw new Exception('No schema file found');
+          }
+
+          $response->setContentType('text/xml');
+          return $this->renderText($xml);
+        }
+        catch (Exception $e)
+        {
+          $response->setStatusCode(500);
+          $this->logMessage('Error when loading: '.$e->getMessage());
+          return $this->renderText("HTTP/1.0 500 Internal Server Error: ".$e->getMessage());
+        }
         break;
       }
 

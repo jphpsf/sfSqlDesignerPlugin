@@ -11,7 +11,7 @@ SQL.IO.prototype.serversave = function(e) {
 }
 
 // override load method to not prompt for schema name
-SQL.IO.prototype.serverload = function(e, keyword) {
+SQL.IO.prototype.serverload = function(e) {
 	var bp = this.owner.getOption("xhrpath");
 	var url = bp + "backend/"+this.dom.backend.value+"/?action=load";
 	this.owner.window.showThrobber();

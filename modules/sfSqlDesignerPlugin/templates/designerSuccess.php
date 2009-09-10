@@ -274,7 +274,20 @@ tableName
 
 //-->
 	<script type="text/javascript">
-		var d = new SQL.Designer();
+		(function(){
+			var designer = new SQL.Designer();
+			var loadDesigner = function(){
+				designer.io.serverload();
+			};
+			if (window.addEventListener) {
+				window.addEventListener('load',loadDesigner,false);
+			} else if (window.attachEvent) {
+				window.attachEvent('onload',loadDesigner);
+			} else {
+				window['onload']=loadDesigner;
+			}
+		})();
+
 	</script>
 </body>
 </html>
