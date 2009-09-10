@@ -15,9 +15,6 @@ class sfSqlDesignerPluginActions extends sfActions
    */
   public function executeDesigner()
   {
-    $this->css_dir=sfConfig::get('sf_web_dir').'/sfSqlDesignerPlugin/css/';
-    $this->images_dir=sfConfig::get('sf_web_dir').'/sfSqlDesignerPlugin/images/';
-    $this->js_dir=sfConfig::get('sf_web_dir').'/sfSqlDesignerPlugin/js/';
   }
 
   /**

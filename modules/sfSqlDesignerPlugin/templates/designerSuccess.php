@@ -9,14 +9,14 @@
 	<title>WWW SQL Designer</title>
 	<meta http-equiv="X-UA-Compatible" content="IE=7" />
  	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<link rel="stylesheet" type="text/css" href="<?php echo $css_dir; ?>style.css" media="all" />
-	<!--[if IE 6]><link rel="stylesheet" type="text/css" href="<?php echo $css_dir; ?>ie6.css" /><![endif]-->
-	<!--[if IE 7]><link rel="stylesheet" type="text/css" href="<?php echo $css_dir; ?>ie7.css" /><![endif]-->
-	<link rel="stylesheet" href="<?php echo $css_dir; ?>print.css" type="text/css" media="print" />
-	<script type="text/javascript" src="<?php echo $js_dir; ?>oz.js"></script>
-	<script type="text/javascript" src="<?php echo $js_dir; ?>config.js"></script>
-	<script type="text/javascript" src="<?php echo $js_dir; ?>wwwsqldesigner.js"></script>
-	<script type="text/javascript" src="<?php echo $js_dir; ?>sfsqldesigner.js"></script>
+	<link rel="stylesheet" type="text/css" href="<?php echo stylesheet_path('../sfSqlDesignerPlugin/css/style'); ?>" media="all" />
+	<!--[if IE 6]><link rel="stylesheet" type="text/css" href="<?php echo stylesheet_path('../sfSqlDesignerPlugin/css/ie6'); ?>" /><![endif]-->
+	<!--[if IE 7]><link rel="stylesheet" type="text/css" href="<?php echo stylesheet_path('../sfSqlDesignerPlugin/css/ie7'); ?>" /><![endif]-->
+	<link rel="stylesheet" href="<?php echo stylesheet_path('../sfSqlDesignerPlugin/css/print'); ?>" type="text/css" media="print" />
+	<script type="text/javascript" src="<?php echo javascript_path('../sfSqlDesignerPlugin/js/oz'); ?>"></script>
+	<script type="text/javascript" src="<?php echo javascript_path('../sfSqlDesignerPlugin/js/config'); ?>"></script>
+	<script type="text/javascript" src="<?php echo javascript_path('../sfSqlDesignerPlugin/js/wwwsqldesigner'); ?>"></script>
+	<script type="text/javascript" src="<?php echo javascript_path('../sfSqlDesignerPlugin/js/sfsqldesigner'); ?>"></script>
 </head>
 
 <body>
@@ -61,7 +61,7 @@
 	<div id="background"></div>
 
 	<div id="window">
-		<div id="windowtitle"><img id="throbber" src="<?php echo $images_dir; ?>throbber.gif" alt="" title=""/></div>
+		<div id="windowtitle"><img id="throbber" src="<?php echo javascript_path('../sfSqlDesignerPlugin/images/throbber.gif'); ?>" alt="" title=""/></div>
 		<div id="windowcontent"></div>
 		<input type="button" id="windowok" />
 		<input type="button" id="windowcancel" />
@@ -250,29 +250,68 @@
 								<input type="checkbox" id="tableacttaggable" value="1" />
 								<label id="tableacttaggablelabel" for="tableacttaggable">actAsTaggable</label>
 							</li>
-							<li>
-								<input type="checkbox" id="tableacttaggable" value="1" disabled="disabled" />
-								<label id="tableacti18nlabel" for="tableacti18n">actAsI18n (not supported)</label>
-							</li>
 						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<label id="tablebehaviorslabel" for="tablebehaviors">Other behaviors</label>
+					</td>
+					<td>
+						<textarea rows="5" cols="40" id="tablebehaviors"></textarea>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<label id="tableconnectionlabel" for="tableconnection">Connection</label>
+					</td>
+					<td>
+						<input id="tableconnection" type="text" />
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<label id="tabletypelabel" for="tabletype">Type (MyISAM,innodb,...)</label>
+					</td>
+					<td>
+						<input id="tabletype" type="text" />
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<label id="tablecollatelabel" for="tablecollate">Collate</label>
+					</td>
+					<td>
+						<input id="tablecollate" type="text" />
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<label id="tablecharsetlabel" for="tablecharset">Charset</label>
+					</td>
+					<td>
+						<input id="tablecharset" type="text" />
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<label id="tableclassnamelabel" for="tableclassname">className</label>
+					</td>
+					<td>
+						<input id="tableclassname" type="text" />
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<label id="tabletablenamelabel" for="tabletablename">tableName</label>
+					</td>
+					<td>
+						<input id="tabletablename" type="text" />
 					</td>
 				</tr>
 			</tbody>
 		</table>
 	</div>
-
-<!--
-
-  options:
-    type: MyISAM
-    collate: utf8_unicode_ci
-    charset: utf8
-
-className
-abstract (true|false)
-tableName
-
-//-->
 	<script type="text/javascript">
 		(function(){
 			var d = new SQL.Designer();
