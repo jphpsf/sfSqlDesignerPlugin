@@ -24,22 +24,24 @@ The plugin is available on github at http://github.com/jphpsf/sfSqlDesigner/tree
 
 ## Installation
   * Cd in your Symfony project root directory
-  * Fetch a copy of the plugin with: `git clone git://github.com/jphpsf/sfSqlDesigner.git plugins/sfSqlDesignerPlugin`
-  * Clear the cache `symfony cc`
+  * Fetch a copy of the plugin with:
+        $> git clone git://github.com/jphpsf/sfSqlDesigner.git plugins/sfSqlDesignerPlugin
+  * Clear the cache
+        $> symfony cc
   * Ignore the following steps if you are upgrading:
-    * Publish assets: `symfony plugin:publish-assets`
+    * Publish assets:
+        $> symfony plugin:publish-assets
     * Double check the plugin is enabled in config/ProjectConfiguration.class.php (should be as default in 1.2)
-    * Open your app (or one of your app if you have several) config/settings.yml and add into the `dev:` like this:
-
-    dev:
-      .settings:
-        error_reporting:        <?php echo (E_ALL | E_STRICT)."\n" ?>
-        web_debug:              on
-        cache:                  off
-        no_script_name:         off
-        etag:                   off
-        enabled_modules:
-          - sfSqlDesignerPlugin
+    * Open your app (or one of your app if you have several) config/settings.yml and add into the dev: "section" like this:
+        dev:
+          .settings:
+            error_reporting:        <?php echo (E_ALL | E_STRICT)."\n" ?>
+            web_debug:              on
+            cache:                  off
+            no_script_name:         off
+            etag:                   off
+            enabled_modules:
+              - sfSqlDesignerPlugin
 
   * Open your browser at http://url_of_your_app/yourapp_dev.php/wwwSqlDesigner
 
