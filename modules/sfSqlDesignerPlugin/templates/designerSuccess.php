@@ -275,19 +275,11 @@ tableName
 //-->
 	<script type="text/javascript">
 		(function(){
-			var designer = new SQL.Designer();
-			var loadDesigner = function(){
-				designer.io.serverload();
-			};
-			if (window.addEventListener) {
-				window.addEventListener('load',loadDesigner,false);
-			} else if (window.attachEvent) {
-				window.attachEvent('onload',loadDesigner);
-			} else {
-				window['onload']=loadDesigner;
-			}
+			var d = new SQL.Designer();
+			OZ.Event.add(window,"load",function(){
+				d.io.serverload();
+			});
 		})();
-
 	</script>
 </body>
 </html>
