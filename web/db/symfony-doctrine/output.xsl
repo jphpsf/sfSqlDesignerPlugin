@@ -169,7 +169,7 @@
 </xsl:text>
 		</xsl:if>
 		<xsl:if test=" @type = 'UNIQUE'">
-			<xsl:text>      unique: true
+			<xsl:text>      type: unique
 </xsl:text>
 		</xsl:if>
 
