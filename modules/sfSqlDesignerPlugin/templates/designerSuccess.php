@@ -61,7 +61,7 @@
 	<div id="background"></div>
 
 	<div id="window">
-		<div id="windowtitle"><img id="throbber" src="<?php echo javascript_path('../sfSqlDesignerPlugin/images/throbber.gif'); ?>" alt="" title=""/></div>
+		<div id="windowtitle"><img id="throbber" src="<?php echo image_path('../sfSqlDesignerPlugin/images/throbber.gif'); ?>" alt="" title=""/></div>
 		<div id="windowcontent"></div>
 		<input type="button" id="windowok" />
 		<input type="button" id="windowcancel" />

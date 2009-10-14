@@ -26,11 +26,4 @@
 		<type label="Gzip" length="1" sql="gzip" quote="'"/>
 	</group>
 
-	<group label="Table properties" color="rgb(221,221,221)">
-		<type label="Class name" length="0" sql="tableClassName" quote="" note="The generated class name"/>
-		<type label="Table name" length="0" sql="tableName" quote="" note="The sql table name" />
-		<type label="Behaviors" length="0" sql="tableActAs" quote="" note="The behaviors on the table" />
-		<type label="Options" length="0" sql="tableOptions" quote="" note="The options for the table" />
-	</group>
-
 </datatypes>

@@ -11,11 +11,9 @@ Tired of hand writing your schema.yml to describe your database schema in Symfon
   * Save database schema to schema.yml and sfSqlDesigner.xml
   * Load database schema from sfSqlDesigner.xml
   * TODO: Load database schema from schema.yml (issues to resolve: restore x/y position and comments)
-  * TODO: Proper support for behaviors and table options (ie: not using a datatype hack)
   * TODO: Import schema from database as configured in databases.yml
   * TODO: Support all options of Doctrine syntax for schema.yml
     * Not supported yet: actAsI18n, actAsGeographical, actAsSluggable, actAsSearchable, actAsNestedSet
-    * Not supported yet: nested behaviors
     * Not supported yet: inheritance
     * Not supported yet: indexes
     * Not supported yet: one to many and many to many relationships, delete cascade
