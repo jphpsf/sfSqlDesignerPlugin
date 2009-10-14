@@ -5,7 +5,7 @@ Tired of hand writing your schema.yml to describe your database schema in Symfon
 
 ## Requirements
   * symfony 1.2.x
-  * Doctrine
+  * Doctrine 1.0.x
 
 ## Main Features
   * Save database schema to schema.yml and sfSqlDesigner.xml
@@ -23,14 +23,17 @@ Tired of hand writing your schema.yml to describe your database schema in Symfon
   * TODO: Add global schema information
   * TODO: Add link to sql designer in debug bar?
   * TODO: Add a button to call the doctrine build task to make sure the generated model is valid?
+  * TODO: Support for Propel?
+  * TODO: Support for symfony 1.3/1.4
+  * TODO: Detect Doctrine version and support 1.2.x and 2.0
 
 ## Source
-The plugin is available on github at http://github.com/jphpsf/sfSqlDesigner/tree/master , it is not available on Symfony plugins website (yet).
+The plugin is available on github at http://github.com/jphpsf/sfSqlDesignerPlugin/tree/master.
 
 ## Installation
   * Cd in your Symfony project root directory
   * Fetch a copy of the plugin with:
-        $> git clone git://github.com/jphpsf/sfSqlDesigner.git plugins/sfSqlDesignerPlugin
+        $> git clone git://github.com/jphpsf/sfSqlDesignerPlugin.git plugins/sfSqlDesignerPlugin
   * Clear the cache:
         $> symfony cc
   * Ignore the following steps if you are upgrading:
